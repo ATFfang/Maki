@@ -1,3 +1,195 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Maki</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+			z-index: 1;
+        }
+        #search-box {
+			position: absolute;
+			top: 10%;
+			left: 50%;
+			transform: translateX(-50%);
+			z-index: 2;
+			padding: 8px;
+			width: 260px;
+			background-color: #b1e5f9;
+			border: 1px solid #120246;
+			border-radius: 4px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			font-size: 16px;
+			line-height: 1.5;
+			color: #333333;
+			outline: none;
+		}
+
+		#layer-switch {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			z-index: 2;
+			padding: 10px;
+			background-color: #207ce600;
+			border: 1px solid #cccccc00;
+			border-radius: 4px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			font-size: 16px;
+			line-height: 1.5;
+			color: #3d48dc;
+			outline: none;
+			flex-direction: column;
+		}
+		#layer-switch button {
+			margin-right: 10px;
+			background-color: #0c284799;
+			color:antiquewhite;
+			height: 25px;
+			width: 80px;
+		}
+
+		#layer-switch button:hover {
+			background-color: #57c4d0;
+		}
+
+
+		
+    </style>
+</head>
+<body>
+	<input type='text' id='search-box' placeholder='请输入坐标，如：116.4074,39.9042' />
+    <div id='map'></div>
+	<div id='layer-switch'>
+		<button id='streets'>街道</button>
+		<button id='satellite'>卫星</button>
+		<button id='dark'>黑色模式</button>
+		<button id='green'>绿色模式</button>
+	</div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYXRmaWVsZDIwMjIiLCJhIjoiY2xlZjFodW1lMDR3dTNvbXVvajMwNGxzZSJ9.1FnjGYOuY7l-Us1SFatgKg';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/navigation-night-v1',
+            center: [104.06667, 30.66667],
+            zoom: 4
+        });
+
+		//图片显示
+		var marker = new mapboxgl.Marker({ element: document.createElement('img'),
+  		anchor: 'bottom',
+  		offset: [0, 0], // 调整偏移量
+  		draggable: false,
+		})
+    		.setLngLat([122.144687,37.465525])
+    		.setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    		.setHTML('<img src="https://s1.ax1x.com/2023/03/03/ppkvVc8.jpg" width="200" height="200">'))
+    		.addTo(map);
+
+		marker._element.src = '书.svg'
+
+		var marker2 = new mapboxgl.Marker({ element: document.createElement('img'),
+  		anchor: 'bottom',
+  		offset: [0, 0], // 调整偏移量
+  		draggable: false,
+		})
+    		.setLngLat([118.91025,32.106838])
+    		.setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    		.setHTML('<img src="https://s1.ax1x.com/2023/03/03/ppAeZvQ.jpg" width="200" height="200">'))
+    		.addTo(map);
+
+		marker2._element.src = '书.svg'
+
+		var marker3 = new mapboxgl.Marker({ element: document.createElement('img'),
+  		anchor: 'bottom',
+  		offset: [0, 0], // 调整偏移量
+  		draggable: false,
+		})
+    		.setLngLat([121.667003,31.141447])
+    		.setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    		.setHTML('<img src="https://s1.ax1x.com/2023/03/03/ppAexiV.jpg" width="200" height="200">'))
+    		.addTo(map);
+
+		marker3._element.src = '书.svg'
+
+		var marker4 = new mapboxgl.Marker({ element: document.createElement('img'),
+  		anchor: 'bottom',
+  		offset: [0, 0], // 调整偏移量
+  		draggable: false,
+		})
+    		.setLngLat([120.623361,31.24607])
+    		.setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    		.setHTML('<img src="https://s1.ax1x.com/2023/03/03/ppAejI0.jpg" width="200" height="200">'))
+    		.addTo(map);
+
+		marker4._element.src = '书.svg'
+
+
+        document.getElementById('search-box').addEventListener('keyup', function(e) {
+			if (e.keyCode === 13) { // 如果用户按下了回车键
+				var value = e.target.value;
+				if (value) {
+					var coords = value.split(',').map(function(coord) { // 将用户输入的坐标字符串转换成数组
+						return parseFloat(coord.trim());
+					});
+                    if (coords.length === 2) { // 如果坐标格式正确
+					map.flyTo({ // 移动地图到指定坐标并放大
+						center: coords,
+						zoom: 13
+					});
+
+					var marker = new mapboxgl.Marker() // 创建标注对象
+					.setLngLat(coords) // 设置标注位置
+					.addTo(map); // 将标注添加到地图中
+
+
+
+				} else {
+					alert('请输入正确的坐标格式，如：116.4074,39.9042');
+				}
+			} else {
+				alert('请输入坐标');
+			}
+		}
+	});
+
+	document.getElementById('streets').addEventListener('click', function() {
+		map.setStyle('mapbox://styles/mapbox/streets-v11');
+	});
+
+	document.getElementById('satellite').addEventListener('click', function() {
+		map.setStyle('mapbox://styles/mapbox/satellite-v9');
+	});
+
+	document.getElementById('dark').addEventListener('click', function() {
+		map.setStyle('mapbox://styles/mapbox/navigation-night-v1');
+	});
+
+	document.getElementById('green').addEventListener('click', function() {
+		map.setStyle('mapbox://styles/atfield2022/clepcn2wz000f01pori0ygb5z');
+	});
+
+	
+    </script>
+</body>
+</html>
+
+
+
+
+=======
 <!DOCTYPE html>
 <html>
 <head>
@@ -188,3 +380,4 @@
 
 
 
+>>>>>>> bcc01e5 (input yours message)
