@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset='utf-8' />
-    <title>Mapbox GeoJSON Example</title>
+    <title>Maki</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.css' rel='stylesheet' />
@@ -64,6 +64,8 @@
 			background-color: #57c4d0;
 		}
 
+
+		
     </style>
 </head>
 <body>
@@ -74,7 +76,6 @@
 		<button id='satellite'>卫星</button>
 		<button id='dark'>黑色模式</button>
 		<button id='green'>绿色模式</button>
-		
 	</div>
     <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoiYXRmaWVsZDIwMjIiLCJhIjoiY2xlZjFodW1lMDR3dTNvbXVvajMwNGxzZSJ9.1FnjGYOuY7l-Us1SFatgKg';
@@ -85,7 +86,20 @@
             zoom: 4
         });
 
-		
+		//图片显示
+		var marker = new mapboxgl.Marker({ element: document.createElement('img'),
+  		anchor: 'bottom',
+  		offset: [0, -10], // 调整偏移量
+  		draggable: false,
+		})
+    		.setLngLat([116.4074,39.9042])
+    		.setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    		.setHTML('<img src="https://s1.ax1x.com/2023/03/03/ppkvVc8.jpg" width="200" height="200">'))
+    		.addTo(map);
+
+		marker._element.src = 'svg//书.svg'
+
+
         document.getElementById('search-box').addEventListener('keyup', function(e) {
 			if (e.keyCode === 13) { // 如果用户按下了回车键
 				var value = e.target.value;
@@ -129,6 +143,8 @@
 	document.getElementById('green').addEventListener('click', function() {
 		map.setStyle('mapbox://styles/atfield2022/clepcn2wz000f01pori0ygb5z');
 	});
+
+	
     </script>
 </body>
 </html>
