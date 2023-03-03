@@ -65,7 +65,15 @@
 			background-color: #57c4d0;
 		}
 
-
+		#my-image {
+			position: absolute;
+			z-index: 2;
+			right: 10px;
+			bottom: 10px;
+			width: 50px;
+			height: 50px;
+			cursor: pointer;
+		}
 		
     </style>
 </head>
@@ -78,6 +86,11 @@
 		<button id='dark'>黑色模式</button>
 		<button id='green'>绿色模式</button>
 	</div>
+	<!-- 在指定位置放置图片 -->
+	<img id="my-image" src="https://s1.ax1x.com/2023/03/03/ppAKz79.jpg" alt="点击播放音乐">
+
+	<!-- 在HTML页面底部添加音乐播放器 -->
+	<audio id="music" src="李志- 天空之城.mp3"></audio>
     <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoiYXRmaWVsZDIwMjIiLCJhIjoiY2xlZjFodW1lMDR3dTNvbXVvajMwNGxzZSJ9.1FnjGYOuY7l-Us1SFatgKg';
         var map = new mapboxgl.Map({
@@ -180,6 +193,18 @@
 	document.getElementById('green').addEventListener('click', function() {
 		map.setStyle('mapbox://styles/atfield2022/clepcn2wz000f01pori0ygb5z');
 	});
+
+	//播放音乐
+	document.getElementById("my-image").addEventListener("click", function() {
+			// 获取音乐播放器
+			var audio = document.getElementById("music");
+			// 如果音乐正在播放，暂停音乐；否则开始播放音乐
+			if (audio.paused) {
+				audio.play();
+			} else {
+				audio.pause();
+			}
+		});
 
 	
     </script>
