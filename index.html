@@ -89,15 +89,51 @@
 		//图片显示
 		var marker = new mapboxgl.Marker({ element: document.createElement('img'),
   		anchor: 'bottom',
-  		offset: [0, -10], // 调整偏移量
+  		offset: [0, 0], // 调整偏移量
   		draggable: false,
 		})
-    		.setLngLat([116.4074,39.9042])
+    		.setLngLat([122.144687,37.465525])
     		.setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
     		.setHTML('<img src="https://s1.ax1x.com/2023/03/03/ppkvVc8.jpg" width="200" height="200">'))
     		.addTo(map);
 
-		marker._element.src = '书.svg'
+		marker._element.src = 'svg//书.svg'
+
+		var marker2 = new mapboxgl.Marker({ element: document.createElement('img'),
+  		anchor: 'bottom',
+  		offset: [0, 0], // 调整偏移量
+  		draggable: false,
+		})
+    		.setLngLat([118.91025,32.106838])
+    		.setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    		.setHTML('<img src="https://s1.ax1x.com/2023/03/03/ppAeZvQ.jpg" width="200" height="200">'))
+    		.addTo(map);
+
+		marker2._element.src = 'svg//书.svg'
+
+		var marker3 = new mapboxgl.Marker({ element: document.createElement('img'),
+  		anchor: 'bottom',
+  		offset: [0, 0], // 调整偏移量
+  		draggable: false,
+		})
+    		.setLngLat([121.667003,31.141447])
+    		.setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    		.setHTML('<img src="https://s1.ax1x.com/2023/03/03/ppAexiV.jpg" width="200" height="200">'))
+    		.addTo(map);
+
+		marker3._element.src = 'svg//书.svg'
+
+		var marker4 = new mapboxgl.Marker({ element: document.createElement('img'),
+  		anchor: 'bottom',
+  		offset: [0, 0], // 调整偏移量
+  		draggable: false,
+		})
+    		.setLngLat([120.623361,31.24607])
+    		.setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    		.setHTML('<img src="https://s1.ax1x.com/2023/03/03/ppAejI0.jpg" width="200" height="200">'))
+    		.addTo(map);
+
+		marker4._element.src = 'svg//书.svg'
 
 
         document.getElementById('search-box').addEventListener('keyup', function(e) {
